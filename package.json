@@ -5,7 +5,10 @@
   "private": true,
   "dependencies": {
     "egg": "^1.8.0",
-    "egg-scripts": "^1.2.0"
+    "egg-redis": "^1.0.2",
+    "egg-scripts": "^1.2.0",
+    "egg-session-redis": "^1.0.0",
+    "egg-socket.io": "^2.1.0"
   },
   "devDependencies": {
     "autod": "^2.9.0",
