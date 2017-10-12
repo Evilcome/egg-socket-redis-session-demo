@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>socket client</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" charset="utf-8"></script>
+    <script type="application/javascript" src="//cdn.rawgit.com/Alorel/console-log-html/master/console-log-html.min.js"></script>
+    <style media="screen">
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    #myULContainer {
+      margin: 0;
+      list-style: none;
+      -webkit-padding-start: 0;
+      -webkit-margin-after: 0;
+      -webkit-margin-before: 1em;
+      border: 1px solid #000;
+      overflow-y: auto;
+      width: 100%;
+      background: #333;
+      color: #fff;
+    }
+    </style>
+  </head>
+  <body>
+    <ul id="myULContainer" style="padding: 5em;height: 500px;"></ul>
+    <script type="text/javascript">
+
+    var socket = io('/');
+    socket.on('connect', function(){
+      ConsoleLogHTML.connect(document.getElementById("myULContainer")); // Redirect log messages
+      console.log('connect!');
+
+      setInterval(function() {
+        socket.emit('chat', 'balabala...');
+      }, 1000);
+    });
+    socket.on('res', function(data) {
+      console.log(data);
+      console.log('res: -----------------');
+    });
+    socket.on('disconnect', function(){
+      console.log('disconnect!');
+      ConsoleLogHTML.disconnect(); // Stop redirecting
+    });
+    </script>
+  </body>
+</html>
